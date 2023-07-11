@@ -75,7 +75,8 @@ Se ingresa el nombre de una película y debe devolver una lista de 5 peliculas s
 
 ### Deployment
 ---
-Para el deploy de la API, se hará uso de **`FASTAPI`** junto a la plataforma **`Render`**
+Para el deploy de la API, se hará uso de **`FASTAPI`** junto a la plataforma **`Render`**.<br>
+Se encuentrar en ejecucion en el siguiente link: https://proyect-service3.onrender.com/docs
 
 ### Video
 ---
