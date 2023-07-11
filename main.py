@@ -109,38 +109,3 @@ def get_director(director):
         lista = list(zip(titulo, fecha, retorno, costo, ganancia))
     return f'director:{director}', lista
 
-
-# Funcion de recomendacion
-
-#Filtramos las filas a recomendar
-df_filtered = df_eda[df_eda['vote_count'] > 30]
-df_sorted = df_filtered.sort_values('vote_average', ascending=False).head(10000).reset_index(drop=True)
-
-#Creamos un campo compuesto por otros campos seleccionados
-df_sorted['str_vector'] = df_sorted['genres'] + ' ' + df_sorted['overview'] + ' ' + df_sorted['companies']  
-df_sorted = df_sorted[['title', 'str_vector','vote_average']]
-df_sorted['str_vector'].fillna('', inplace=True)
-
-#Vectorizamos el campo compuesto
-vectorizer = TfidfVectorizer(max_features=5000)
-matriz_vector = vectorizer.fit_transform(df_sorted['str_vector'])
-
-#Hacemos uso del metodo de similitud de cosenos para hallar valores similares
-cos_sim = cosine_similarity(matriz_vector)
-
-#Funcion de ingreso de titulo y retorno de recomendacion 
-@app.get('/recomendacion/({titulo})')
-def recomendacion(titulo):
-    titulo = titulo.lower()
-    if titulo in df_sorted['title'].values:
-        indices = pd.Series(df_sorted.index, index=df_sorted['title']).drop_duplicates()
-        idx = indices[titulo]
-        scores = list(enumerate(cos_sim[idx]))
-        scores = sorted(scores, key=lambda x:x[1], reverse=True)
-        top_indices = [i[0] for i in scores if i[0] !=idx]
-
-        top_movies = df_sorted['title'].iloc[top_indices[:5]]
-        recomended_movies = ', '.join(top_movies)
-        return {'peliculas recomendadas': recomended_movies}
-    else:
-        return 'La pelicula no se encuentra dentro de la muestra'
