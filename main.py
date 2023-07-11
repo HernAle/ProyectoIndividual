@@ -114,7 +114,7 @@ def get_director(director):
 
 #Filtramos las filas a recomendar
 df_filtered = df_eda[df_eda['vote_count'] > 30]
-df_sorted = df_filtered.sort_values('vote_average', ascending=False).head(5000).reset_index(drop=True)
+df_sorted = df_filtered.sort_values('vote_average', ascending=False).head(10000).reset_index(drop=True)
 
 #Creamos un campo compuesto por otros campos seleccionados
 df_sorted['str_vector'] = df_sorted['genres'] + ' ' + df_sorted['overview'] + ' ' + df_sorted['companies']  
@@ -122,7 +122,7 @@ df_sorted = df_sorted[['title', 'str_vector','vote_average']]
 df_sorted['str_vector'].fillna('', inplace=True)
 
 #Vectorizamos el campo compuesto
-vectorizer = TfidfVectorizer(max_features=2000)
+vectorizer = TfidfVectorizer(max_features=5000)
 matriz_vector = vectorizer.fit_transform(df_sorted['str_vector'])
 
 #Hacemos uso del metodo de similitud de cosenos para hallar valores similares
