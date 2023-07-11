@@ -80,5 +80,6 @@ Se encuentrar en ejecucion en el siguiente link: https://proyect-service3.onrend
 
 ### Video
 ---
-Para poder observar pasos del proceso y una explicación mas detallada acerca de los trabajado en el dataset, accede al siguiente link:
+Para poder observar pasos del proceso y una explicación mas detallada acerca de los trabajado en el dataset, accede al siguiente link:<br>
+https://www.youtube.com/watch?v=gCmzBzwLm64
 
