@@ -113,7 +113,7 @@ def get_director(director):
 
 #Filtramos las filas a recomendar
 df_filtered = df_eda[df_eda['vote_count'] > 30]
-df_sorted = df_filtered.sort_values('vote_average', ascending=False).head(10000).reset_index(drop=True)
+df_sorted = df_filtered.sort_values('vote_average', ascending=False).head(3000).reset_index(drop=True)
 
 #Creamos un campo compuesto por otros campos seleccionados
 df_sorted['str_vector'] = df_sorted['genres'] + ' ' + df_sorted['overview'] + ' ' + df_sorted['companies']  
