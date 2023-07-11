@@ -6,7 +6,7 @@ import seaborn as sns
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
-app = FastAPI(title='Proyeco Indiviual - MLOps | Cristaldo Hernan',
+app = FastAPI(title='Proyecto Individual - MLOps | Cristaldo Hernan',
               description='API de funciones y recomendacion')
 
 #Carga de datasets
