@@ -121,7 +121,7 @@ df_sorted = df_sorted[['title', 'str_vector','vote_average']]
 df_sorted['str_vector'].fillna('', inplace=True)
 
 #Vectorizamos el campo compuesto
-vectorizer = TfidfVectorizer(max_features=1000)
+vectorizer = TfidfVectorizer(max_features=2000)
 matriz_vector = vectorizer.fit_transform(df_sorted['str_vector'])
 
 #Hacemos uso del metodo de similitud de cosenos para hallar valores similares
